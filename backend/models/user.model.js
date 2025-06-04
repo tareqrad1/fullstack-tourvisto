@@ -22,7 +22,12 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ['user', 'admin'],
         default: 'user',
-    }
+    },
+    trips: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Trip',
+        default: []
+    }],
 }, { timestamps: true });
 
 const User = mongoose.model('User', userSchema);

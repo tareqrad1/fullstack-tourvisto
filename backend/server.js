@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 5000;
 
 //routes
 import authRoutes from './routes/auth.route.js';
+import tripRoutes from './routes/trip.route.js';
 
 //middlewares
 app.use(cookieParser());
@@ -20,6 +21,7 @@ app.use(cors({
 }));
 
 app.use('/api/auth', authRoutes);
+app.use('/api/trips', tripRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on Port:${PORT}`);
