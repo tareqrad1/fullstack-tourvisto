@@ -24,6 +24,10 @@ const bookingSchema = new mongoose.Schema({
         type: String,
         enum: ["pending", "completed"],
         default: "pending"
+    },
+    stripeSessionId: {
+        type: String,
+        unique: true,
     }
 }, { timestamps: true });
 
