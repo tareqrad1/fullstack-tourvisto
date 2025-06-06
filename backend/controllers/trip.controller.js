@@ -2,12 +2,12 @@ import cloudinary from "../config/connectCloudinary.js";
 import Trip from "../models/trip.model.js";
 
 export const createTrips = async (req, res) => {
-    const { title, country, duration, groupType, travelStyle, interest, budgetEstimate, description, price, availableSeats, images, location } = req.body;
+    const { title, subTitle, country, duration, groupType, travelStyle, interest, budgetEstimate, description, price, startDate, availableSeats, images, location } = req.body;
     try {
-        if(!title || !country || !duration || !groupType || !travelStyle || !interest || !budgetEstimate || !description || !price || !availableSeats || !location) {
+        if(!title || !subTitle || !country || !duration || !groupType || !travelStyle || !interest || !budgetEstimate || !description || !price || !startDate || !availableSeats || !location) {
             return res.status(400).json({ error: "All fields are required" });
         }
-        if(description.length < 30) {
+        if(description.split(' ').length < 30) {
             return res.status(400).json({ error: "Description must be at least 30 words long" });
         }
         if(images.length < 2) {
@@ -24,6 +24,7 @@ export const createTrips = async (req, res) => {
         }
         const trip = new Trip({
             title,
+            subTitle,
             country,
             duration,
             groupType,
@@ -37,7 +38,8 @@ export const createTrips = async (req, res) => {
             location: {
                 type: 'Point',
                 coordinates: [location.coordinates[0], location.coordinates[1]]
-            }
+            },
+            startDate: new Date(startDate),
         });
         await trip.save();
         res.status(201).json({
@@ -62,7 +64,8 @@ export const getAllTrips = async (req, res) => {
             message: 'Trips fetched successfully',
             trips,
             currentPage: page,
-            total: Math.ceil(await Trip.countDocuments() / limit)
+            total: Math.ceil(await Trip.countDocuments() / limit),
+            totalTrips: Math.ceil(await Trip.countDocuments())
         })
     } catch (error) {
         console.error("Error fetching trips:", error);
@@ -104,7 +107,7 @@ export const deleteTrip = async (req, res) => {
 }
 export const updateTrip = async (req, res) => {
     const { id } = req.params;
-    const { title, country, duration, groupType, travelStyle, interest, budgetEstimate, description, price, availableSeats, images, location } = req.body;
+    const { title, subTitle, country, duration, groupType, travelStyle, interest, budgetEstimate, description, price, startDate, availableSeats, images, location } = req.body;
     try {
         const trip = await Trip.findById(id);
         if(!trip) {
@@ -124,6 +127,7 @@ export const updateTrip = async (req, res) => {
             };
         };
         trip.title = title || trip.title;
+        subTitle = subTitle || trip.subTitle;
         trip.country = country || trip.country;
         trip.duration = duration || trip.duration;
         trip.groupType = groupType || trip.groupType;
@@ -132,6 +136,7 @@ export const updateTrip = async (req, res) => {
         trip.budgetEstimate = budgetEstimate || trip.budgetEstimate;
         trip.description = description || trip.description;
         trip.price = price || trip.price;
+        trip.startDate = startDate ? new Date(startDate) : trip.startDate;
         trip.availableSeats = availableSeats || trip.availableSeats;
         trip.images = uploadImages.length > 0 ? uploadImages : trip.images;
         trip.location = location && location.coordinates ? {

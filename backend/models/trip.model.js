@@ -5,6 +5,10 @@ const tripSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    subTitle: {
+        type: String,
+        required: true,
+    },
     country: {
         type: String,
         required: true,
@@ -38,6 +42,10 @@ const tripSchema = new mongoose.Schema({
     },
     price: {
         type: Number,
+        required: true,
+    },
+    startDate: {
+        type: Date,
         required: true,
     },
     availableSeats: {
