@@ -51,7 +51,6 @@ const tripSchema = new mongoose.Schema({
     availableSeats: {
         type: Number,
         required: true,
-        min: 1
     },
     images: {
         type: [String],

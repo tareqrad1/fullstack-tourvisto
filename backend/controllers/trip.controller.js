@@ -7,7 +7,7 @@ export const createTrips = async (req, res) => {
         if(!title || !subTitle || !country || !duration || !groupType || !travelStyle || !interest || !budgetEstimate || !description || !price || !startDate || !availableSeats || !location) {
             return res.status(400).json({ error: "All fields are required" });
         }
-        if(description.split(' ').length < 30) {
+        if(description.length < 30) {
             return res.status(400).json({ error: "Description must be at least 30 words long" });
         }
         if(images.length < 2) {
