@@ -1,8 +1,17 @@
-'use client'
-
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+    title: "Not Found",
+    description: "Not Found Page",
+    keywords: "not found, travel",
+    authors: [{ name: "Tourvisto Team" }],
+    icons: {
+        icon: "/fi_2200326.svg",
+    },
+};
 
 const NotFoundPage: React.FC = (): React.JSX.Element => {
     return (
@@ -19,8 +28,8 @@ const NotFoundPage: React.FC = (): React.JSX.Element => {
                 Sorry, the page you’re looking for doesn’t exist or has been moved.
             </p>
             <Link href="/">
-                <Button className="bg-blueAccent hover:bg-blueAccent-hover text-white">
-                Go to Homepage
+                <Button className="bg-blueAccent hover:bg-blueAccent-hover text-white capitalize">
+                Go to Home page
                 </Button>
             </Link>
         </div>
