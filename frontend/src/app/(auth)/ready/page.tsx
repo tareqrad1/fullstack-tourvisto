@@ -28,8 +28,8 @@ const ReadyPage: React.FC = (): React.JSX.Element => {
                 style={{ zIndex: -1}}
             />
             <div className='flex justify-center items-center px-4 h-screen z-20'>
-                <div className='bg-[#FFFFFF] w-fit h-fit rounded-2xl overflow-hidden px-4 py-8'>
-                    <div className="logo flex gap-2 mb-4 justify-center">
+                <div className='bg-[#FFFFFF] w-fit h-fit rounded-2xl overflow-hidden px-4 py-9'>
+                    <div className="logo flex gap-2 mb-6 justify-center">
                         <Image src="/fi_2200326.svg"
                             alt="logo"
                             width={30}
@@ -37,14 +37,14 @@ const ReadyPage: React.FC = (): React.JSX.Element => {
                             priority
                             className="object-cover"
                         />
-                        <h1 className={`text-3xl text-midnight ${plusJakartaSans.className} font-[700] text-3xl`}>Tourvisto</h1>
+                        <h1 className={`text-3xl text-midnight tracking-wider ${plusJakartaSans.className} font-[700] text-3xl`}>Tourvisto</h1>
                     </div>
                     <div className='max-w-[423px] text-center space-y-2'>
-                        <h3 className='text-[28px] text-midnight font-semibold'>Start Your Travel Journey</h3>
+                        <h3 className='text-[25px] text-midnight font-semibold'>Start Your Travel Journey</h3>
                         <p className='text-sm md:text-[18px] font-[400] text-ash leading-[28px]'>Sign in with Google to explore AI-generated itineraries, trending destinations, and much more</p>
                     </div>
-                    <div className='mt-4 w-full'>
-                        <Button className='bg-blueAccent hover:bg-blueAccent-hover w-full text-white font-semibold' onClick={handleSubmit}><Plane className='flex justify-center items-center w-20 h-20' />Free Register</Button>
+                    <div className='mt-5 w-full'>
+                        <Button className='bg-blueAccent hover:bg-blueAccent-hover w-full text-white font-semibold tracking-wide' onClick={handleSubmit}>Free Register</Button>
                     </div>
                 </div>
             </div>
