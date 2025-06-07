@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   keywords: "tour booking, travel tours, vacation, sightseeing, travel platform, book tours online",
   authors: [{ name: "Tourvisto Team" }],
   icons: {
-    icon: "/fi_2200326.png",
+    icon: "/fi_2200326.svg",
   },
 };
 

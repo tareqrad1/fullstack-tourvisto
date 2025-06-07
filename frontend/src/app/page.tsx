@@ -1,5 +1,5 @@
 import React from 'react'
-import Register from './register/page'
+import Register from './(auth)/ready/page'
 
 const Home = () => {
     return (
@@ -8,4 +8,5 @@ const Home = () => {
         </div>
     )
 }
+
 export default Home

@@ -8,8 +8,9 @@
 /* custom theme */
 @theme {
   --color-blueAccent: #256FF1;
+  --color-blueAccent-hover: #1E5ED8;
   --color-midnight: #1F1F36;
-  --color-accent-ash: #7F7E83;
+  --color-ash: #7F7E83;
   --color-mist: #EAECF0;
 }
 @layer base {
