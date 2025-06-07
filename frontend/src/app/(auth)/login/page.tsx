@@ -1,12 +1,14 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import Image from 'next/image'
+import { Eye, EyeClosed } from 'lucide-react'
 
 const LoginPage: React.FC = (): React.JSX.Element => {
+  const [open, setOpen] = useState<boolean>(false);
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
   }
@@ -31,9 +33,17 @@ const LoginPage: React.FC = (): React.JSX.Element => {
                 <div>
                   <Input type='email' placeholder='Email'/>
                 </div>
-                <div>
+              {open ? (
+                <div className='relative'>
+                  <Eye width={20} hanging={20} className='text-ash absolute top-1/2 transform -translate-y-1/2 right-3 cursor-pointer' onClick={() => setOpen(false)} />
+                  <Input type='text' placeholder='Password'/>
+                </div>
+              ) : (
+                <div className='relative'>
+                  <EyeClosed width={20} hanging={20} className='text-ash absolute top-1/2 transform -translate-y-1/2 right-3 cursor-pointer' onClick={() => setOpen(true)} />
                   <Input type='password' placeholder='Password'/>
                 </div>
+              )}
                 <Button type='submit' className='bg-blueAccent hover:bg-blueAccent-hover w-full'>Login</Button>
               </form>
               <div className='mt-3'>
