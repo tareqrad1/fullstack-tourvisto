@@ -29,7 +29,7 @@ const RegisterPage: React.FC = (): React.JSX.Element => {
             <div>
               <form onSubmit={handleSubmit} className='space-y-4'>
                 <div>
-                  <Input type='text' placeholder='Fullname' className="focus:ring-blueAccent"/>
+                  <Input type='text' placeholder='Full Name' className="focus:ring-blueAccent"/>
                 </div>
                 <div>
                   <Input type='email' placeholder='Email'/>
