@@ -25,7 +25,7 @@ const ReadyPage: React.FC = async() => {
                 src="/bg.png"
                 alt="Background"
                 fill
-                priority
+                loading='lazy'
                 className="object-cover"
                 style={{ zIndex: -1}}
             />

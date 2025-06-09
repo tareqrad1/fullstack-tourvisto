@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
 import "./globals.css";
 import AuthContextProvider from "@/context/AuthContextProvider";
+import { Toaster } from 'react-hot-toast';
 
 const figtree = Figtree({
   subsets: ["latin"],
@@ -30,6 +31,7 @@ export default function RootLayout({
         <AuthContextProvider>
           {children}
         </AuthContextProvider>
+        <Toaster />
       </body>
     </html>
   );

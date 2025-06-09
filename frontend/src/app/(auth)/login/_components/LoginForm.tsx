@@ -9,6 +9,7 @@ import { Eye, EyeClosed } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
+import Loading from '@/components/Loading';
 
 type TFormInputs = {
     email: string;
@@ -31,7 +32,7 @@ const LoginForm: React.FC = (): React.JSX.Element => {
                 src="/bg.png"
                 alt="Background"
                 fill
-                priority
+                loading='lazy'
                 className="object-cover"
                 style={{ zIndex: -1}}
             />
@@ -58,7 +59,17 @@ const LoginForm: React.FC = (): React.JSX.Element => {
                         </div>
                     )}
                     {state?.error && (<p className='text-start text-red-500 text-sm'>{state?.error}</p>)}
-                        <Button disabled={!email || !password} type='submit' className='bg-blueAccent hover:bg-blueAccent-hover w-full'>{state?.isLoading ? 'Loading...' : 'Sign in'}</Button>
+                        <Button
+                            type="submit"
+                            className="bg-blueAccent hover:bg-blueAccent-hover w-full flex items-center justify-center gap-2"
+                            disabled={state?.isLoading}
+                            >
+                            {state?.isLoading ? (
+                                <Loading />
+                                ) : (
+                                    'Sign up'
+                            )}
+                    </Button>
                     </form>
                     <div className='mt-3'>
                         <p className='text-center text-ash'>Don't have an account? <span className='text-primary'><Link href={'/ready/register'}>Sign up</Link></span></p>
