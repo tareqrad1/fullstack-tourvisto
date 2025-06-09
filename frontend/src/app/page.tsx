@@ -1,11 +1,19 @@
-import React from 'react'
-import Register from './(auth)/ready/page'
+// 'use client'
+import { redirect } from 'next/navigation'
+import { getUserInSession } from './_action'
 
-const Home = () => {
+const Home = async() => {
+    const { token, user } = await getUserInSession()
+    if(!token) {
+        return redirect('/ready')
+    }
+    if(user.role === 'admin') {
+        return redirect('/dashboard')
+    }
     return (
-        <div>
-            Welcome home page
-        </div>
+        <>
+            <h1>welcome user page - {user.name}</h1>
+        </>
     )
 }
 

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
 import "./globals.css";
+import AuthContextProvider from "@/context/AuthContextProvider";
 
 const figtree = Figtree({
   subsets: ["latin"],
 });
-
 
 export const metadata: Metadata = {
   title: "Tourvisto – Your Ultimate Tour Booking Platform",
@@ -27,7 +27,9 @@ export default function RootLayout({
       <body
         className={`${figtree.className} antialiased bg-[#F9FBFC] selection:bg-blueAccent selection:text-white`}
       >
-        {children}
+        <AuthContextProvider>
+          {children}
+        </AuthContextProvider>
       </body>
     </html>
   );

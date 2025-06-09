@@ -1,21 +1,23 @@
-'use client';
 
 import React from 'react'
 import Image from 'next/image';
 import { Plus_Jakarta_Sans } from 'next/font/google';
-import { Button } from '@/components/ui/button';
-import { Plane  } from 'lucide-react'
-import { useRouter } from 'next/navigation';
+import ButtonComponent from './_components/button/Button';
+import { getUserInSession } from '@/app/_action';
+import { redirect } from 'next/navigation';
 
 const plusJakartaSans = Plus_Jakarta_Sans({
     subsets: ['latin'],
     weight: ['200', '300', '400', '500', '600', '700', '800'],
 });
 
-const ReadyPage: React.FC = (): React.JSX.Element => {
-    const router = useRouter();
-    function handleSubmit() {
-        router.push('/ready/register');
+const ReadyPage: React.FC = async() => {
+    const { token, user } = await getUserInSession();
+    if(token) {
+        if(user.role === 'admin') {
+            return redirect('/dashboard');
+        }
+        return redirect('/');
     }
     return (
         <div>
@@ -44,7 +46,7 @@ const ReadyPage: React.FC = (): React.JSX.Element => {
                         <p className='text-sm md:text-[18px] font-[400] text-ash leading-[28px]'>Sign in with Google to explore AI-generated itineraries, trending destinations, and much more</p>
                     </div>
                     <div className='mt-5 w-full'>
-                        <Button className='bg-blueAccent hover:bg-blueAccent-hover w-full text-white font-semibold tracking-wide' onClick={handleSubmit}>Free Register</Button>
+                        <ButtonComponent />
                     </div>
                 </div>
             </div>
