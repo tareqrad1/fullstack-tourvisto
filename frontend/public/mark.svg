@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Map Pin -->
+  <path d="M32 2C21 2 12 11 12 22c0 11 20 40 20 40s20-29 20-40c0-11-9-20-20-20z"></path>
+  <circle cx="32" cy="22" r="6"></circle>
+  <!-- Airplane -->
+  <path d="M30 18l4 8 6-1-10 10-1-6-8-4 8-7z" fill="currentColor"></path>
+</svg>

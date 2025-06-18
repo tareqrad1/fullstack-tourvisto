@@ -65,9 +65,9 @@ const LoginForm: React.FC = (): React.JSX.Element => {
                             disabled={state?.isLoading}
                             >
                             {state?.isLoading ? (
-                                <Loading />
+                                <Loading name='Signing in' />
                                 ) : (
-                                    'Sign up'
+                                    'Sign in'
                             )}
                     </Button>
                     </form>

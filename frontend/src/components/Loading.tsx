@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Loading = () => {
+const Loading = ({ name }: { name: string }) => {
     return (
     <>
         <svg
@@ -23,7 +23,7 @@ const Loading = () => {
             d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 00-8 8h4z"
             />
         </svg>
-        Signing up...
+        {name}...
         </>
     )
 }

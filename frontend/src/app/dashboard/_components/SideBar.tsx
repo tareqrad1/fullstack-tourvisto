@@ -9,7 +9,6 @@ import { usePathname, useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/useAuth';
 import { toast } from 'react-hot-toast';
-import { PanelRightOpen } from 'lucide-react';
 
 const plusJakartaSans = Plus_Jakarta_Sans({
     subsets: ['latin'],
@@ -47,18 +46,22 @@ const SideBar = ({ user }: TUser): React.JSX.Element => {
         router.push('/');
     }
     return (
-        <div className='h-screen'>
+        <div>
         {/* Toggle Button: visible only on small screens */}
-        <div className="lg:hidden p-4">
-            <Button onClick={() => setOpen(!open)} className="bg-blueAccent text-white">
-            {open ? <PanelRightOpen className='z-20' /> : <PanelRightOpen />}
+        <div className="flex justify-between items-center md:hidden p-4 bg-[#FFFFFF] border-[1px] border-[#ECF2EF]">
+            <div className='flex items-center gap-1'>
+                <Image src={'/fi_2200326.svg'} alt='logo' width={22} height={22} priority />
+                <h1 className='text-[20px] font-bold leading-5 text-midnight'>Tourvisto</h1>
+            </div>
+            <Button variant={'ghost'} onClick={() => setOpen(!open)} className=" text-white">
+                {open ? <img src="/gg_menu-left.svg" alt="icon" /> : <img src="/gg_menu-left.svg" alt="icon" />}
             </Button>
         </div>
 
         {/* Sidebar */}
-        <div ref={sidebarRef} className={`fixed top-0 left-0 h-full z-40 transition-transform duration-300 bg-white border-r border-[#ECF2EF] shadow-lg w-[270px] flex flex-col justify-between
+        <div ref={sidebarRef} className={` fixed top-0 left-0 h-screen z-40 transition-transform duration-300 bg-white border-r border-[#ECF2EF] shadow-lg w-[270px] flex flex-col justify-between
             ${open ? 'translate-x-0' : '-translate-x-full'}
-            lg:translate-x-0 lg:static`}>
+            md:translate-x-0 md:static`}>
             <div>
             <div className='flex items-center gap-2 py-7 px-3 border-b border-[#ECF2EF]'>
                 <Image src={'/fi_2200326.svg'} alt='logo' width={29} height={29} />
