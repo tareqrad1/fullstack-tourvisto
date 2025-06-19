@@ -14,7 +14,7 @@ Tourvisto is a full-stack AI-powered travel planner that helps users explore, pl
 </p>
 ## 🛠️ Tech Stack
 
-- **Frontend:** Next.js (React), Tailwind CSS
+- **Frontend:** Next.js (React), Tailwind CSS, ShadCN
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB (Mongoose)
 - **Auth:** JWT & Cookies
