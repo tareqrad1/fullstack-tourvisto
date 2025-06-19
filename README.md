@@ -19,7 +19,7 @@ Tourvisto is a full-stack AI-powered travel planner that helps users explore, pl
 - **Database:** MongoDB (Mongoose)
 - **Auth:** JWT & Cookies
 - **Payments:** Stripe
-- **State Management:** Zustand
+- **State Management:** Context Api & Hooks & SWR
 - **Deployment:** Vercel (Frontend), Render/Heroku (Backend)
 
 ---
@@ -33,7 +33,7 @@ Tourvisto is a full-stack AI-powered travel planner that helps users explore, pl
 - 📍 Interactive Maps (Mapbox / Google Maps)
 - 💳 Stripe Payments Integration
 - 📁 File uploads for user profiles or attachments
-- 🔒 Admin access with user controls
+- 🔒 Admin access with user controls and Dashboard
 
 ---
 
