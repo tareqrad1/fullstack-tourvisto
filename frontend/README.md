@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌍 Tourvisto - AI Travel App
 
-## Getting Started
+Tourvisto is a full-stack AI-powered travel planner that helps users explore, plan, and manage custom itineraries around the world. Built with the MERN stack (MongoDB, Express, React with Next.js, Node.js), this app delivers fast performance, seamless routing, and an intuitive user experience.
 
-First, run the development server:
+## 🛠️ Tech Stack
+
+- **Frontend:** Next.js (React), Tailwind CSS
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB (Mongoose)
+- **Auth:** JWT & Cookies
+- **Payments:** Stripe
+- **State Management:** Zustand
+- **Deployment:** Vercel (Frontend), Render/Heroku (Backend)
+
+---
+
+## ✨ Features
+
+- 🔐 User Authentication (JWT + Cookies)
+- 🧭 Smart AI Itinerary Generator
+- 🧳 Dashboard to manage trips & users
+- 🌐 SSR with Next.js + API integration
+- 📍 Interactive Maps (Mapbox / Google Maps)
+- 💳 Stripe Payments Integration
+- 📁 File uploads for user profiles or attachments
+- 🔒 Admin access with user controls
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+git clone https://github.com/your-username/tourvisto.git
+cd tourvisto
