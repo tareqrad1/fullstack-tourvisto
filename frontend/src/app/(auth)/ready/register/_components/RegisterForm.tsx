@@ -42,8 +42,8 @@ const RegisterForm: React.FC = (): React.JSX.Element => {
                 <div className="grid w-full max-w-sm items-center gap-3">
                     <Input id="picture" type="file" accept="image/*" {...register('avatar')}/>
                 </div>
-                {state?.error && <p className='text-start text-red-500 text-sm'>{state.error}</p>}
-                <Button type='submit' className='bg-blueAccent hover:bg-blueAccent-hover w-full'>{state?.isLoading ? <Loading /> : 'Sign up'}</Button>
+                {state?.error && <p className='text-start text-red-500 text-sm'>{state?.error}</p>}
+                <Button type='submit' className='bg-blueAccent hover:bg-blueAccent-hover w-full'>{state?.isLoading ? <Loading name='Signing up' /> : 'Sign up'}</Button>
             </form>
             <div className='mt-3'>
                 <p className='text-center text-ash'>Already have an account? <span className='text-primary'><Link href={'/login'}>Login</Link></span></p>

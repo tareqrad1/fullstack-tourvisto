@@ -27,15 +27,20 @@ const LoginForm: React.FC = (): React.JSX.Element => {
         router.push('/');
     }
     return (
-        <div className='container'>
-            <Image
-                src="/bg.png"
-                alt="Background"
-                fill
-                loading='lazy'
-                className="object-cover"
-                style={{ zIndex: -1}}
-            />
+        <div className='relative container'>
+            <div className="absolute inset-0 z-0 w-full">
+                <Image
+                    src="/card-img-6.svg"
+                    alt="Background"
+                    fill
+                    priority
+                    className="object-cover"
+                    style={{ zIndex: -1 }}
+                />
+
+            {/* Overlay Layer */}
+                <div className="absolute inset-0 bg-black/40" />
+            </div>
             <div className='flex justify-center items-center h-screen'>
                 <div className='bg-white shadow-lg rounded-md px-8 pt-6 pb-8 w-full max-w-md mx-auto lg:mt-10 z-20'>
                     <div className='space-y-2 mb-6'>
