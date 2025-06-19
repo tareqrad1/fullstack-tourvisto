@@ -1,4 +1,7 @@
 # 🌍 Tourvisto - AI Travel App
+
+Tourvisto is a full-stack AI-powered travel planner that helps users explore, plan, and manage custom itineraries around the world. Built with the MERN stack (MongoDB, Express, React with Next.js, Node.js), this app delivers fast performance, seamless routing, and an intuitive user experience.
+
 ## 🧰 Built With
 
 <p align="left">
@@ -8,8 +11,6 @@
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="40" alt="React" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" width="40" alt="MongoDB" />
 </p>
-Tourvisto is a full-stack AI-powered travel planner that helps users explore, plan, and manage custom itineraries around the world. Built with the MERN stack (MongoDB, Express, React with Next.js, Node.js), this app delivers fast performance, seamless routing, and an intuitive user experience.
-
 ## 🛠️ Tech Stack
 
 - **Frontend:** Next.js (React), Tailwind CSS
