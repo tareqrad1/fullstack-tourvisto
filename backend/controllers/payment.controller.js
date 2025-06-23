@@ -1,6 +1,7 @@
 import Booking from "../models/booking.model.js";
 import { stripe } from "../config/connectStripe.js";
 import dotenv from 'dotenv';
+import Trip from "../models/trip.model.js";
 dotenv.config();
 
 export const createCheckoutSession = async (req, res) => {
@@ -60,7 +61,14 @@ export const checkoutSuccess = async (req, res) => {
             paymentStatus: 'completed',
             stripeSessionId: sessionId,
         });
+        const trip = await Trip.findById(session.metadata.tripId);
+        if(!trip) {
+            return res.status(400).json({ error: "error in payment controller trip seats" });
+        }
         await booking.save();
+        // @note: Test This Before Uploading
+        trip.availableSeats -= session.metadata.guests;
+        await trip.save();
         return res.status(200).json({ message: 'Checkout successful', booking });
     } catch (error) {
         console.error('Error handling checkout success:', error);
