@@ -28,9 +28,9 @@ const LoginForm: React.FC = (): React.JSX.Element => {
     }
     return (
         <div className='relative container'>
-            <div className="absolute inset-0 z-0 w-full">
+            <div className="absolute inset-0 z-0 w-full h-screen">
                 <Image
-                    src="/card-img-6.svg"
+                    src="/bg.png"
                     alt="Background"
                     fill
                     priority

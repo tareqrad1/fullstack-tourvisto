@@ -1,4 +1,7 @@
+'use client';
+
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 
 interface ITrip {
@@ -10,8 +13,11 @@ interface ITrip {
 }
 
 const TripCard: React.FC<{ trip: ITrip }> = ({ trip }): React.JSX.Element => {
+    const router = useRouter();
     return (
-        <div className='bg-white rounded-[20px] shadow-md overflow-hidden'>
+        <div className='bg-white rounded-[20px] shadow-md overflow-hidden'
+            onClick={() => router.push('/trip/6842d80b44673d4205b1783e')}
+        >
             <div className='relative w-full h-[190px]'>
                 <Image
                 src="/img.png"
@@ -23,7 +29,7 @@ const TripCard: React.FC<{ trip: ITrip }> = ({ trip }): React.JSX.Element => {
                     $300
                 </p>
             </div>
-            <div className='p-4 space-y-4'>
+            <div className='p-4 space-y-4 cursor-pointer'>
                 <h1 className='text-lg font-semibold'>{trip.title}</h1>
                 <div className='flex items-start gap-2'>
                     <img src="/location.svg" alt="location icon" className="mt-1 w-4 h-4" />

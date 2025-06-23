@@ -1,36 +1,33 @@
-"use client";
+'use client'
 
-import L from "leaflet";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
+import React, { useEffect, useRef } from "react";
+import maplibregl from "maplibre-gl";
+import "maplibre-gl/dist/maplibre-gl.css";
 
-delete (L.Icon.Default.prototype as any)._getIconUrl;
-L.Icon.Default.mergeOptions({
-    iconRetinaUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon-2x.png",
-    iconUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon.png",
-    shadowUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png",
-});
-
-export interface MapLeafletProps {
-  // Add any props you need here
+interface MapProps {
+    longitude: number;
+    latitude: number;
+    zoom?: number;
 }
 
-const MapLeaflet = ({}: MapLeafletProps) => {
-    return (
-        <MapContainer
-        center={[40.4168, -3.7038]}
-        zoom={13}
-        style={{ height: "400px", width: "100%", zIndex: 0 }}
-        >
-        <TileLayer
-            attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a>'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <Marker position={[40.4168, -3.7038]}>
-            <Popup>Your Trip Location</Popup>
-        </Marker>
-        </MapContainer>
-    );
-};
+const Map: React.FC<MapProps> = ({ longitude, latitude, zoom = 10 }) => {
+    const mapContainer = useRef<HTMLDivElement | null>(null);
+    const map = useRef<maplibregl.Map | null>(null);
 
-export default MapLeaflet;
+    useEffect(() => {
+        if (map.current) return; // initialize only once
+        if (!mapContainer.current) return;
+
+        map.current = new maplibregl.Map({
+            container: mapContainer.current,
+            style: `https://api.maptiler.com/maps/streets/style.json?key=${process.env.NEXT_PUBLIC_MAPTILER_API_KEY}`,
+            center: [longitude, latitude],
+            zoom,
+        });
+        new maplibregl.Marker().setLngLat([longitude, latitude]).addTo(map.current);
+
+    }, [longitude, latitude, zoom]);
+    return <div ref={mapContainer} style={{ width: "100%", height: "400px" }} className="rounded-[10px]" />;
+    };
+
+export default Map;
