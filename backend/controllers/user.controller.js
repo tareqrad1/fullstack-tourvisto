@@ -3,15 +3,21 @@ import User from "../models/user.model.js";
 
 export const getAllUsers = async (req, res) => {
     const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 8;
+    const limit = parseInt(req.query.limit) || 9;
     const skip = (page - 1) * limit;
     try {
-        const users = await User.find({}, '-password -__v').skip(skip).limit(limit).sort({ createdAt: -1 });
-        if (users.length === 0) {
-            return res.status(404).json({ error: 'No users found' });
-        }
-        res.status(200).json({ users,
-            totalUser: Math.ceil(await User.countDocuments()),
+        const users = await User.find({}, '-password -__v')
+        .skip(skip)
+        .limit(limit)
+        .sort({ createdAt: -1 });
+        const totalUsers = Math.ceil(await User.countDocuments())
+        const totalPages = Math.ceil(totalUsers / limit);
+        res.status(200).json({
+        users,
+        page,
+        limit,
+        totalUsers,
+        totalPages,
         });
     } catch (error) {
         console.error('Error fetching users:', error);
