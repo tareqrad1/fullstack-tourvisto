@@ -4,7 +4,6 @@ import { getUserInSession } from '@/app/_action'
 import { redirect } from 'next/navigation';
 import RegisterForm from './_components/RegisterForm';
 
-
 const RegisterPage: React.FC = async() => {
   const { token, user } = await getUserInSession();
   if(token) {
@@ -23,6 +22,7 @@ const RegisterPage: React.FC = async() => {
           className="object-cover"
           style={{ zIndex: -1}}
       />
+      <div className="absolute inset-0 bg-black/40" />
       <div className='flex justify-center items-center h-screen'>
           <div className='bg-white shadow-lg rounded-md px-8 pt-6 pb-8 w-full max-w-md mx-auto lg:mt-10 z-20'>
             <div className='space-y-2 mb-6'>

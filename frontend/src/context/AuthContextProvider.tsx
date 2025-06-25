@@ -1,5 +1,5 @@
 'use client';
-import React, { createContext, useEffect, useRef, useState } from "react";
+import React, { createContext, useState } from "react";
 import axios, { isAxiosError } from "axios";
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
@@ -13,7 +13,7 @@ type UserType = {
     avatar: string;
 }
 type StateType = {
-    user: UserType | null;
+    user?: UserType | null;
     isLoading: boolean;
     error: string | null;
 }
@@ -43,14 +43,15 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
                 confirmPassword,
                 avatar
             });
+            setState(({ isLoading: false, error: null }));
             return response.data;
         } catch (error: Error | unknown) {
             if(axios.isAxiosError(error)) {
-                setState((prev) => ({
+                setState ({
                     user: null,
                     isLoading: false,
                     error: error.response?.data.error || 'An error occurred',
-                }));
+                });
                 throw error;
             }
         }

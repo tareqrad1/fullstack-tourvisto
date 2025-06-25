@@ -2,8 +2,6 @@ import React from 'react'
 import type { Metadata } from 'next'
 import TripForm from './_components/TripForm';
 import "leaflet/dist/leaflet.css";
-import { Button } from '@/components/ui/button';
-import Map from '@/components/MapLeaflet';
 
 export const metadata: Metadata = {
     title: "Create Trip - Tourvisto",
@@ -26,13 +24,6 @@ const CreatePage = (): React.JSX.Element => {
                 <div className='z-10'>
                     <TripForm />
                 </div>
-                <div className='mt-4'>
-                    <Map latitude={34.052235} longitude={-118.243683} />
-                </div>
-                <Button className='w-full py-[14px] px-[16px] bg-blueAccent hover:bg-blueAccent-hover rounded-[8px] font-semibold text-white text-[16px] leading-[20px] my-4'>
-                <img src="/mynaui_sparkles.svg" alt="generate svg" />
-                    Generate a trip
-                </Button>
             </div>
         </div>
     )

@@ -8,13 +8,14 @@ import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useRouter } from 'next/navigation';
 import Loading from '@/components/Loading';
+import toast from 'react-hot-toast';
 
 type TFormData = {
     name: string;
     email: string;
     password: string;
     confirmPassword: string;
-    avatar: string;
+    avatar: FileList;
 }
 
 const RegisterForm: React.FC = (): React.JSX.Element => {
@@ -22,8 +23,48 @@ const RegisterForm: React.FC = (): React.JSX.Element => {
     const { state, signup } = useAuth();
     const router = useRouter();
     const submitForm: SubmitHandler<TFormData> = async(data) => {
-        //submit signup
+        const file = data.avatar?.[0];
+        let avatarBase64 = '';
+
+        if (file) {
+        try {
+            avatarBase64 = await readImageFile(file);
+        } catch (err) {
+            toast.error('Failed to read image file');
+            return;
+        }
+        }
+
+        await signup(
+        data.name,
+        data.email,
+        data.password,
+        data.confirmPassword,
+        avatarBase64 // Send base64 image instead of FileList
+        );
+        toast.success('Sign up successfully');
+        router.push('/login');
     }  
+    const readImageFile = (file: File): Promise<string> => {
+        return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+
+        reader.onload = () => {
+            if (typeof reader.result === 'string') {
+            resolve(reader.result);
+            } else {
+            reject(new Error('Failed to read file.'));
+            }
+        };
+
+        reader.onerror = () => {
+            reject(reader.error);
+        };
+
+        reader.readAsDataURL(file); // Convert to base64
+        });
+    };
+
     return (
         <div>
             <form onSubmit={handleSubmit(submitForm)} className='space-y-4'>

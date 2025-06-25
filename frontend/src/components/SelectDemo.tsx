@@ -11,14 +11,14 @@ import {
 } from "@/components/ui/select";
 import Image from "next/image";
 
-export function SelectDemo({ labelN, option, placeHolder }: { labelN: string, option: { name: string, code?: string }[], placeHolder: string }) {
+export function SelectDemo({ labelN, option, placeHolder, value, onChange }: { labelN: string, option: { name: string, code?: string }[], placeHolder: string, value?: string, onChange?: (value: string) => void }) {
     return (
-        <Select>
+        <Select value={value} onValueChange={onChange}>
         <SelectTrigger className="w-full">
             <SelectValue placeholder={placeHolder} />
         </SelectTrigger>
         <SelectContent>
-            <SelectGroup>
+            <SelectGroup >
             <SelectLabel>{labelN}</SelectLabel>
             {option.map((opt, idx) => (
                 <SelectItem key={idx} value={opt.name}>

@@ -1,6 +1,10 @@
 import React from 'react'
 import type { Metadata } from 'next'
 import { UsersTable } from './components/UserTable'
+import { getUserInSession } from '@/app/_action'
+import axios from 'axios'
+
+axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
 
 export const metadata: Metadata = {
   title: "All Users - Tourvisto",
@@ -12,7 +16,16 @@ export const metadata: Metadata = {
   },
 }
 
-const UsersPage = () => {
+const UsersPage = async() => {
+  const { token } = await getUserInSession();
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users`, {
+    headers: {
+      Cookie: `token=${token}`,
+    },
+    cache: 'no-store'
+  });
+  const data = await res.json();
+  console.log(data);
   return (
     <div>
       <div className='py-5'>
@@ -20,7 +33,7 @@ const UsersPage = () => {
         <p className='text-lg font-normal text-ash'>Filter, sort, and access detailed user profiles</p>
       </div>
       <div>
-        <UsersTable />
+        <UsersTable initialData={data} />
       </div>
     </div>
   )
