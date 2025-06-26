@@ -6,7 +6,7 @@ import { adminRoles } from '../middlewares/roles.js';
 const router = express.Router();
 
 router.route('/')
-                .get(protectedRoute, getAllTrips)
+                .get(getAllTrips)
                 .post(protectedRoute, adminRoles, createTrips);
 
 router.route('/:id')
