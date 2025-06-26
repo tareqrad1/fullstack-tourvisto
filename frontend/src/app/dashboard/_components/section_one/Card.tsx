@@ -3,7 +3,7 @@ import React from 'react'
 
 type TCard = {
     title: string;
-    total: string;
+    total: number | undefined;
     percent: number;
     imageChart: string;
     arrowIcon: string;

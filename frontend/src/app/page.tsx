@@ -3,7 +3,7 @@ import { getUserInSession } from './_action'
 import Header from '@/components/Header'
 import ImagesTour from '@/components/ImagesTour'
 import HeadTitle from '@/components/HeadTitle'
-import TripCard from '@/components/TripCard'
+import TripCard, { ITrip } from '@/components/TripCard'
 import { PaginationDemo } from '@/components/Pagenation'
 import Image from 'next/image'
 
@@ -12,6 +12,12 @@ const Home = async() => {
     if(user?.role === 'admin') {
         return redirect('/dashboard')
     }
+    const res = await fetch('http://localhost:5000/api/trips/', {
+        headers: {
+            Cookie: `token=${token}`,
+        },
+    });
+    const data = await res.json();
     return (
         <div>
             <Header user={user} token={token} />
@@ -21,8 +27,8 @@ const Home = async() => {
                 <div>
                     <HeadTitle title='Handpicked Trips' description='Browse well-planned trips designed for different travel styles and interests' />
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
-                        {Array.from({ length: 8 }).map((_, index) => (
-                            <TripCard trip={{id: index, title: 'Thornridge Cir. Shiloh', body: 'St George’s Ln Singapore', key1: 'Mountains', key2: 'City'}} key={index} />
+                        {data?.trips.map((trip: ITrip) => (
+                            <TripCard key={trip._id} trip={trip} />
                         ))}
                     </div>
                     <footer className='border-t-[1px] border-[#EAECF0] flex items-center justify-between p-4 mt-5'>

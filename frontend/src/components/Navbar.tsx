@@ -33,7 +33,7 @@ const Navbar = ({ user, token, style }: { user: { name: string, avatar: string }
                             </button>
                         </Link>
                         <h2 className={`text-sm font-normal ${style ? style : 'text-white'}`}>{user.name}</h2>
-                        <Image src={user.avatar} alt="avatar" width={40} height={40} className='rounded-full' priority />
+                        <Image src={user.avatar} alt="avatar" width={40} height={40} className='rounded-full w-[40px] h-[40px]' priority />
                         <div className="bg-white/30 h-10 w-10 rounded-full flex items-center justify-center cursor-pointer ml-3" onClick={handleLogout}>
                             <Image src="/logout.svg" alt="logout" width={24} height={24} priority />
                         </div>

@@ -1,52 +1,30 @@
 'use client';
 
-import axios from "axios";
-import useSWR from "swr";
-import useSWRInfinite from "swr/infinite";
+import axios from 'axios';
+import useSWR from 'swr';
 
-type TData = {
-    name: string;
-};
+const fetcher = async (url: string) => axios.get(url).then(res => res.data);
 
-interface TDataShape {
-    data: TData[] | null;
+
+interface UserFetchReturns<T> {
+    data: T  | undefined;
     isLoading: boolean;
-    error: any;
-    mutate: () => void;
+    error: string | undefined;
+    mutate: () => void | Promise<T | undefined>;
 }
 
-const fetcher = (url: string) => axios.get(url).then(res => res.data);
-
-export const useFetch = (
-    baseURL?: string | null,
-    page: number = 1,
-    limit: number = 8
-): TDataShape => {
-    const shouldFetch = !!baseURL;
-    const url = shouldFetch ? `${baseURL}?page=${page}&limit=${limit}` : null;
-
-    const { data, isLoading, error, mutate } = useSWR<TData[]>(url, fetcher);
-
+export const useFetch = <T>(url: string, fallbackData?: T): UserFetchReturns<T> => {
+    
+    const { data, isLoading, error, mutate } = useSWR<T>(url, fetcher, {
+        revalidateOnFocus: false,
+        revalidateOnReconnect: false,
+        refreshInterval: 0,
+        fallbackData: fallbackData,
+    });
     return {
-        data: data ?? null,
+        data,
         isLoading,
         error,
         mutate
-    };
-};
-
-
-// export const usePagination = (limit: number = 6) => {
-//     const getKey = (pageIndex: number, prevData: any) => {
-//         if(pageIndex && !prevData.length) return null;
-//         return `http://localhost:5000/api/users/?page={pageIndex}&limit=${limit}`;
-//     }
-//     const { data, isLoading, error, setSize, size } = useSWRInfinite(getKey, fetcher);
-//     return {
-//         data,
-//         isLoading,
-//         error,
-//         setSize,
-//         size
-//     }
-// }
+    }
+}

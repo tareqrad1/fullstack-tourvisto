@@ -10,6 +10,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
+import { UsersTableSkeleton } from "@/components/UserSkeleton";
 import { useDeleteUser } from "@/hooks/useDeleteUsers";
 import { formatDate } from "@/utils/date";
 import axios from "axios";
@@ -36,6 +37,8 @@ export function UsersTable({ initialData }: any) {
         fallbackData: initialData,
     });
     const { deleteUser } = useDeleteUser();
+
+    if(isLoading) return <UsersTableSkeleton />
     return (
         <div className="overflow-x-auto">
         <Table className="bg-[#FFFFFF] border-[1px] border-[#EEF9FF] p-6 shadow-lg rounded-[20px] py-5 mb-5 min-w-[700px] w-full">
@@ -52,7 +55,7 @@ export function UsersTable({ initialData }: any) {
             {users.users.map((user: TUsers) => (
                 <TableRow key={user._id} className="text-sm">
                 <TableCell className="flex items-center gap-2 text-midnight font-semibold text-sm cursor-pointer min-w-0">
-                    <img src={user.avatar} alt="user-photo" className="min-w-[32px] w-8 h-8 rounded-full" />
+                    <img src={user.avatar} alt="user-photo" className="w-8 h-8 rounded-full" />
                     <span className="truncate overflow-hidden text-ellipsis max-w-[150px] sm:max-w-[200px]">
                     {user.name}
                     </span>

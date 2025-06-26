@@ -7,7 +7,7 @@ import Trips from './_components/section_two/Trips';
 import ShowUsers from './_components/section_three/page';
 
 const DashboardPage: React.FC = async() => {
-  const {token, user} = await getUserInSession();
+  const { token, user } = await getUserInSession();
   if(!token) {
     return redirect('/login')
   }else {

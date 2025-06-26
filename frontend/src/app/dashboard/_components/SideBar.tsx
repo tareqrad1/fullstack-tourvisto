@@ -81,7 +81,7 @@ const SideBar = ({ user }: TUser): React.JSX.Element => {
             </div>
             </div>
             <div className='flex items-center gap-3 p-4 border-t border-[#ECF2EF]'>
-            <Image src={user.avatar} alt='user' width={40} height={40}  className='rounded-full' />
+            <Image src={user.avatar} alt='user' width={40} height={40}  className='rounded-full w-[40px] h-[40px]' />
             <div>
                 <h3 className='font-semibold text-[16px]'>{user.name}</h3>
                 <p className='text-sm text-ash'>{user.email.substring(0, user.email.indexOf('.'))}</p>

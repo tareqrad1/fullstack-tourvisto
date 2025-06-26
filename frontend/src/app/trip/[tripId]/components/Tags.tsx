@@ -1,11 +1,12 @@
+import { ITrip } from '@/components/TripCard'
 import Image from 'next/image'
 import React from 'react'
 
-const Tags = (): React.JSX.Element => {
+const Tags = ({ trip }: { trip: ITrip }): React.JSX.Element => {
     return (
         <div className="flex flex-col lg:flex-row justify-between items-center mt-6 gap-4">
                 <div className="flex flex-wrap gap-3">
-                {['Luxury', 'Beach', 'Mountains', 'Budget'].map((tag, idx) => (
+                {[trip.travelStyle, trip.budgetEstimate, trip.groupType, trip.interest].map((tag, idx) => (
                     <p
                     key={idx}
                     className="text-sm font-medium rounded-full px-4 py-2"
