@@ -64,9 +64,9 @@ export const getAllTrips = async (req, res) => {
             message: 'Trips fetched successfully',
             trips,
             currentPage: page,
-            total: Math.ceil(await Trip.countDocuments() / limit),
-            totalTrips: Math.ceil(await Trip.countDocuments())
-        })
+            totalTrips: Math.ceil(await Trip.countDocuments()),
+            totalPages: Math.ceil(await Trip.countDocuments() / limit),
+        });
     } catch (error) {
         console.error("Error fetching trips:", error);
         return res.status(500).json({ error: "Internal server error" });
