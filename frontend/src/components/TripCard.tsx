@@ -18,12 +18,14 @@ export interface ITrip {
     availableSeats: number;
     interest: string;
     groupType: string;
+    duration: number;
 }
 
 const TripCard: React.FC<{ trip: ITrip }> = ({ trip }): React.JSX.Element => {
     const router = useRouter();    
     return (
-        <div className='bg-white rounded-[20px] shadow-md overflow-hidden'
+        <div className='h-full'>
+            <div className='bg-white rounded-[20px] shadow-md overflow-hidden'
             onClick={() => router.push('/trip/'+ trip._id)}
         >
             <div className='relative w-full h-[190px]'>
@@ -52,6 +54,7 @@ const TripCard: React.FC<{ trip: ITrip }> = ({ trip }): React.JSX.Element => {
                     </span>
                 </div>
             </div>
+        </div>
         </div>
     );
 };

@@ -21,7 +21,7 @@ const TotalCards = (): React.JSX.Element => {
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
             <Card title='Total Users' total={users?.totalUsers} percent={12} imageChart='/_Chart.svg' arrowIcon='/arrow-up.svg' color='#027A48' />
             <Card title='Total Trips' total={trips?.totalTrips} percent={3} imageChart='/_ChartDown.svg' arrowIcon='/arrow-down.svg' color='#B42318' />
-            <Card title='Active Users Today' total={activeUsers?.count} percent={7} imageChart='/_Chart.svg' arrowIcon='/arrow-up.svg' color='#027A48' />
+            <Card title='Active Users Today' total={activeUsers?.count || users?.totalUsers} percent={7} imageChart='/_Chart.svg' arrowIcon='/arrow-up.svg' color='#027A48' />
         </div>
     )
 }

@@ -5,7 +5,7 @@ import axios, { isAxiosError } from "axios";
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
 axios.defaults.withCredentials = true;
 
-type UserType = {
+export type UserType = {
     id: string;
     name: string;
     email: string;

@@ -61,7 +61,7 @@ const LeftSide = (): React.JSX.Element => {
                     {users?.users.map((user: UserTypes) => (
                         <div className='flex justify-between items-center' key={user.name}>
                             <div className='flex gap-2 items-center'>
-                                <Image src={user.avatar} alt='user' width={40} height={40} className='rounded-full' />
+                                <Image src={user.avatar} alt='user' width={40} height={40} className='rounded-full w-[40px] h-[40px]' />
                                 <h2 className='font-semibold text-sm leading-[18px]'>{user.name}</h2>
                             </div>
                             <p className='font-semibold text-sm leading-[18px]'>{formatDate(user.createdAt)}</p>

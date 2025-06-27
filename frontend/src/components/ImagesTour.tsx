@@ -12,11 +12,10 @@ const ImagesTour = (): React.JSX.Element => {
                     <div className="lg:col-span-6 space-y-4 selection:select-none">
                         <div className="w-full h-[270px] relative rounded-xl overflow-hidden">
                             <Image
-                            src="/card-img-1.png"
+                            src="/ff.png"
                             alt="card"
                             fill
                             className="object-cover"
-                            priority
                             />
                             <span className='absolute top-4 left-4 text-[#FF543D] bg-white px-3 py-1 rounded-full text-sm font-bold shadow-sm'>3.5</span>
                             <div className='flex flex-col font-normal text-lg text-[#FFFFFF] absolute bottom-4 left-4'>
@@ -27,7 +26,7 @@ const ImagesTour = (): React.JSX.Element => {
                         <div className="flex flex-col md:flex-row gap-4">
                             <div className="flex-1 relative h-[200px] md:h-[390px] rounded-xl overflow-hidden">
                             <Image
-                                src="/card-img-2.png"
+                                src="/fff.png"
                                 alt="card"
                                 fill
                                 className="object-cover"

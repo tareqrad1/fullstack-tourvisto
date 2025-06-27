@@ -1,6 +1,6 @@
 import React from 'react'
 import type { Metadata } from 'next'
-import { UsersTable } from './components/UserTable'
+import { UsersTable } from './_components/UserTable'
 import { getUserInSession } from '@/app/_action'
 import axios from 'axios'
 
