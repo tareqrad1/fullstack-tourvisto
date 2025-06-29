@@ -36,6 +36,7 @@ const TripCard: React.FC<{ trip: ITrip }> = ({ trip }): React.JSX.Element => {
                         alt={trip.title}
                         fill
                         className="object-cover rounded-t-[20px]"
+                        priority
                     />
                     <p className="absolute top-4 right-4 text-black bg-white px-3 py-1 rounded-full text-sm font-medium shadow-sm">
                         ${trip.price}
@@ -46,7 +47,7 @@ const TripCard: React.FC<{ trip: ITrip }> = ({ trip }): React.JSX.Element => {
                     <h1
                         className="text-lg font-semibold leading-tight mb-2 
                         line-clamp-3 break-words"
-                        title={trip.title} // full title on hover
+                        title={trip.title}
                     >
                         {trip.title}
                     </h1>
