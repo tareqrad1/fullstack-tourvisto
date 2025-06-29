@@ -19,9 +19,8 @@ export const useCreateTrip = (): CreateTripShape => {
         setLoading(true);
         setError(null);
         try {
-            const res = await axios.post('/trips', arg);
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/trips`, arg);
             const data = await res.data;
-            console.log(data, 'create successfully');
             setTrip(data);
             setLoading(false);
             setError(null);

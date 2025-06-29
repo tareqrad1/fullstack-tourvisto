@@ -1,7 +1,14 @@
+import { Booking } from '@/app/booking/page'
+import { useFetch } from '@/hooks/useFetch'
 import Image from 'next/image'
 import React from 'react'
+import UsersSkeletons from './_components/UsersSkeletons'
 
-const RightSide = () => {
+const RightSide = (): React.JSX.Element => {
+    const { data, isLoading } = useFetch<{ lastBooking: Booking[] }>('/bookings/last');
+    if(isLoading) {
+        return <UsersSkeletons />
+    }
     return (
         <div className='bg-[#FFFFFF] rounded-[20px] py-[16px] px-[8px]'>
                     <div className='md:px-6'>
@@ -10,38 +17,27 @@ const RightSide = () => {
                         </div>
                         <div className='flex justify-between items-center py-5'>
                             <p className='font-normal text-sm text-ash'>booking</p>
-                            <p className='font-normal text-sm text-ash'>Travel Dates</p>
+                            <p className='font-normal text-sm text-ash'>seats</p>
                         </div>
                         {/* content */}
-                        <div className='space-y-5'>
-                            <div className='flex justify-between items-center'>
+                        <div className='max-h-80 overflow-y-auto space-y-5 pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent'>
+                            {data?.lastBooking.map((booking: Booking) => (
+                                <div className='flex justify-between items-center' key={booking._id}>
                                 <div className='flex gap-2 items-center'>
-                                    <Image src={'/avatar.png'} alt='user' width={40} height={40} />
-                                    <h2 className='font-semibold text-sm leading-[18px]'>James Anderson</h2>
+                                    <Image
+                                    src={booking.trip.images[0] || '/card-img-3.png'}
+                                    alt='user'
+                                    width={40}
+                                    height={40}
+                                    className='rounded-md object-cover'
+                                    />
+                                    <h2 className='font-semibold text-sm leading-[18px]'>
+                                    {booking.trip.title}
+                                    </h2>
                                 </div>
-                                <p className='text-sm font-normal leading-5'>12</p>
-                            </div>
-                            <div className='flex justify-between items-center'>
-                                <div className='flex gap-2 items-center'>
-                                    <Image src={'/avatar.png'} alt='user' width={40} height={40} />
-                                    <h2 className='font-semibold text-sm leading-[18px]'>James Anderson</h2>
+                                <p className='text-sm font-normal leading-5'>{booking.trip.availableSeats}</p>
                                 </div>
-                                <p className='text-sm font-normal leading-5'>12</p>
-                            </div>
-                            <div className='flex justify-between items-center'>
-                                <div className='flex gap-2 items-center'>
-                                    <Image src={'/avatar.png'} alt='user' width={40} height={40} />
-                                    <h2 className='font-semibold text-sm leading-[18px]'>James Anderson</h2>
-                                </div>
-                                <p className='text-sm font-normal leading-5'>12</p>
-                            </div>
-                            <div className='flex justify-between items-center'>
-                                <div className='flex gap-2 items-center'>
-                                    <Image src={'/avatar.png'} alt='user' width={40} height={40} />
-                                    <h2 className='font-semibold text-sm leading-[18px]'>James Anderson</h2>
-                                </div>
-                                <p className='text-sm font-normal leading-5'>12</p>
-                            </div>
+                            ))}
                         </div>
                     </div>
                 </div>

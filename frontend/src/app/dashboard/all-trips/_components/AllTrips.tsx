@@ -15,7 +15,7 @@ const fetcher = (url: string) => axios.get(url).then(res => res.data);
 
 const AllTrips = ({ initialData, limit }: { initialData: TripsResponse, limit: number }) => {
     const [page, setPage] = useState<number>(1);
-    const { data, isLoading } = useSWR<TripsResponse>(`/trips?page=${page}&limit=${limit}`, fetcher, {
+    const { data, isLoading } = useSWR<TripsResponse>(`${process.env.NEXT_PUBLIC_API_URL}/trips?page=${page}&limit=${limit}`, fetcher, {
         fallbackData: initialData,
     });
 

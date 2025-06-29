@@ -33,7 +33,7 @@ const fetcher = (url: string) => axios.get(url).then(res => res.data);
 
 export function UsersTable({ initialData }: any) {
     const [page, setPage] = useState<number>(1);
-    const { data: users, isLoading, error, mutate } = useSWR(`/users?page=${page}&limit=9`, fetcher, {
+    const { data: users, isLoading, error, mutate } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/users?page=${page}&limit=9`, fetcher, {
         fallbackData: initialData,
     });
     const { deleteUser } = useDeleteUser();

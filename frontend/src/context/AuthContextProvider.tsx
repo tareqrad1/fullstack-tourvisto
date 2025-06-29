@@ -36,7 +36,7 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
     const signup = async (name: string, email: string, password: string, confirmPassword: string, avatar: string) => {
         setState((prev) => ({ ...prev, isLoading: true, error: null }));
         try {
-            const response = await axios.post('/auth/register', {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/register`, {
                 name,
                 email,
                 password,
@@ -59,7 +59,7 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
     const login = async (email: string, password: string) => {
         setState((prev) => ({ ...prev, isLoading: true, error: null }));
         try {
-            const response = await axios.post('/auth/login', {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
                 email,
                 password
             });
@@ -85,7 +85,7 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
     const logout = async () => {
         setState((prev) => ({ ...prev, isLoading: true, error: null }));
         try {
-            await axios.post('/auth/logout');
+            await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`);
             setState((prev) => ({
                 ...prev,
                 user: null,

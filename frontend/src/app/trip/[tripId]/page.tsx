@@ -1,15 +1,7 @@
 import { getUserInSession } from '@/app/_action';
-// import { Button } from '@/components/ui/button';
-// import axios from 'axios';
-// import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import React from 'react';
 import Navbar from './components/Navbar';
-// import Tags from './components/Tags';
-// import Map from '@/components/MapLeaflet';
-// import Link from 'next/link';
-// import PayButton from './components/PayButton';
-// import { Trash } from 'lucide-react';
 import TripContent from './components/TripContent';
 
 const TripPage = async ({ params }: { params: { tripId: string } }) => {
@@ -18,7 +10,7 @@ const TripPage = async ({ params }: { params: { tripId: string } }) => {
 
     const { tripId } = params;
     
-    const res = await fetch(`http://localhost:5000/api/trips/${tripId}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/trips/${tripId}`, {
         headers: {
             Cookie: `token=${token}`,
         }
@@ -27,8 +19,7 @@ const TripPage = async ({ params }: { params: { tripId: string } }) => {
     return (
         <div>
             <Navbar user={user} />
-        {/* Main Content */}
-        <TripContent initialData={data} user={user} />
+            <TripContent initialData={data} user={user} />
         </div>
     );
 };

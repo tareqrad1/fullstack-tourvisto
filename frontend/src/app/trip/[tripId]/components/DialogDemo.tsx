@@ -1,5 +1,5 @@
 'use client';
-
+import { loadStripe } from '@stripe/stripe-js'
 import { Button } from "@/components/ui/button"
 import {
     Dialog,
@@ -15,10 +15,34 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { useState } from "react"
+import { ITrip } from "@/components/TripCard";
+import axios from 'axios';
 
-export function DialogDemo() {
-    const [guests, setGuests] = useState(1);
-    const [isReady, setIsReady] = useState(false);
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || '');
+
+export function DialogDemo({ trip }: { trip: ITrip }) {
+    const [guests, setGuests] = useState<number>(1);
+    const [isReady, setIsReady] = useState<boolean>(false);
+    const PRICE = Number(trip.price) * guests;
+
+    async function handleCreateCheckoutSession() {
+        const stripe = await stripePromise;
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/payments/create-checkout-session`, {
+            tripId: trip._id,
+            tripTitle: trip.title,
+            tripSubTitle: trip.subTitle,
+            image: trip.images[0],
+            tripPrice: trip.price,
+            guests,
+        });
+        const session = await response.data;
+        const result = await stripe?.redirectToCheckout({
+            sessionId: session.sessionId,
+        });
+        if(result?.error) {
+            alert(result.error.message);
+        }
+    }
 
     return (
         <Dialog>
@@ -71,8 +95,9 @@ export function DialogDemo() {
                     <Button
                         className="bg-blueAccent text-white hover:bg-blueAccent-hover"
                         disabled={!isReady || guests < 1}
+                        onClick={handleCreateCheckoutSession}
                     >
-                        Pay $555
+                        Pay ${PRICE}
                     </Button>
                 </DialogFooter>
             </DialogContent>

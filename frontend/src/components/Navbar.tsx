@@ -7,7 +7,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast'
 import React from 'react'
-import { Button } from './ui/button';
+import { useFetch } from '@/hooks/useFetch';
+import { Booking } from '@/app/booking/page';
 
 const Navbar = ({ user, token, style }: { user: { name: string, avatar: string }, token: string | undefined, style?: string }) => {
     const isAuthenticated: boolean = token ? true : false;
@@ -18,6 +19,7 @@ const Navbar = ({ user, token, style }: { user: { name: string, avatar: string }
         router.refresh();
         toast.success('Logout successfully');
     }
+    const { data } = useFetch<{ bookings: Booking[] }>('/bookings');
     return (
             <div className="container flex justify-between items-center absolute top-0 left-0 right-0 z-20 py-5">
                 <div className="flex items-center gap-2">
@@ -29,7 +31,7 @@ const Navbar = ({ user, token, style }: { user: { name: string, avatar: string }
                         <Link href={'/booking'}>
                             <button className="relative hover:bg-none cursor-pointer mr-2">
                                 <Bell className="w-6 h-6 text-[#e6e6e6]" />
-                                <span className="absolute top-0 right-0 inline-block w-2 h-2 bg-red-500 rounded-full" />
+                                {data?.bookings.length && <span className="absolute top-0 right-0 inline-block w-2 h-2 bg-red-500 rounded-full" />}
                             </button>
                         </Link>
                         <h2 className={`text-sm font-normal ${style ? style : 'text-white'}`}>{user.name}</h2>

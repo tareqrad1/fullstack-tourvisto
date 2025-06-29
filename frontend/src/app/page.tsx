@@ -6,6 +6,7 @@ import HeadTitle from '@/components/HeadTitle'
 import Image from 'next/image'
 import axios from 'axios'
 import AllTrips from './dashboard/all-trips/_components/AllTrips'
+import Link from 'next/link'
 
 const Home = async() => {
     const { token, user } = await getUserInSession()
@@ -17,7 +18,7 @@ const Home = async() => {
     return (
         <div>
             <Header user={user} token={token} />
-            <main className="container py-10">
+            <main className="container py-10" id="features">
                 <ImagesTour />
                 {/* start of content */}
                 <HeadTitle title='Handpicked Trips' description='Browse well-planned trips designed for different travel styles and interests' />
@@ -29,7 +30,9 @@ const Home = async() => {
                     <h1 className='text-2xl font-bold leading-5 text-midnight'>Tourvisto</h1>
                 </div>
                 <div className='flex items-center gap-3'>
-                    <p className='text-[16px] font-normal text-ash hover:underline cursor-pointer'>Terms & Condition</p>
+                    <Link href={'/terms'}>
+                        <p className='text-[16px] font-normal text-ash hover:underline cursor-pointer'>Terms & Condition</p>
+                    </Link>
                     <p className='text-[16px] font-normal text-ash hover:underline cursor-pointer'>Privacy Policy</p>
                 </div>
             </footer>

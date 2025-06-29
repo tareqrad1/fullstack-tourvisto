@@ -14,16 +14,69 @@ import Tags from './Tags';
 import toast from 'react-hot-toast';
 import { UserType } from '@/context/AuthContextProvider';
 import { useRouter } from 'next/navigation';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const fetcher = (url: string) => axios.get(url).then(res => res.data);
 const TripContent = ({ initialData, user }: { initialData: { trip: ITrip }, user: UserType }) => {
     const router = useRouter();
-    const { data, isLoading } = useSWR(`/trips/${initialData.trip._id}`, fetcher, {
+    const { data, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/trips/${initialData.trip._id}`, fetcher, {
         fallbackData: initialData,
     });
+   if (isLoading) {
+    return (
+        <div className="container flex flex-col lg:flex-row gap-6 mt-6 pb-6">
+            <div>
+                <Skeleton className="w-32 h-10 mb-4" />
+            </div>
+            <div className="w-full lg:max-w-4xl space-y-6">
+                {/* Title */}
+                <Skeleton className="h-10 w-3/4" />
+
+                {/* Trip Info Row */}
+                <div className="flex justify-between items-center">
+                    <div className="flex flex-wrap gap-4">
+                        <Skeleton className="h-6 w-36" />
+                        <Skeleton className="h-6 w-36" />
+                    </div>
+                    <Skeleton className="h-6 w-20" />
+                </div>
+
+                {/* Image Grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-8 gap-4">
+                    <Skeleton className="h-72 w-full lg:col-span-4 rounded-2xl" />
+                    <div className="flex flex-col gap-4 lg:col-span-4">
+                        <Skeleton className="h-32 w-full rounded-xl" />
+                        <Skeleton className="h-32 w-full rounded-xl" />
+                    </div>
+                </div>
+
+                {/* Tags */}
+                <div className="flex gap-2 flex-wrap mt-4">
+                    {[...Array(4)].map((_, i) => (
+                        <Skeleton key={i} className="h-8 w-20 rounded-full" />
+                    ))}
+                </div>
+
+                {/* Description */}
+                <div className="space-y-2 mt-6">
+                    {[...Array(4)].map((_, i) => (
+                        <Skeleton key={i} className="h-4 w-full" />
+                    ))}
+                </div>
+
+                {/* Map */}
+                <Skeleton className="h-64 w-full rounded-2xl mt-6" />
+
+                {/* Booking Button */}
+                <Skeleton className="h-12 w-full rounded-xl mt-4" />
+            </div>
+        </div>
+    );
+}
+
     async function handleRemove() {
         try {
-            await axios.delete(`/trips/${initialData.trip._id}`);
+            await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/trips/${initialData.trip._id}`);
             toast.success('Trip deleted successfully');
             router.push('/');
             mutate(`/trips`)
@@ -58,8 +111,10 @@ const TripContent = ({ initialData, user }: { initialData: { trip: ITrip }, user
                     </div>
                     <div>
                         
-                        {isAdmin && (
+                        {isAdmin ? (
                             <Trash className='w-5 h-5 cursor-pointer hover:text-gray-400 transition-colors' onClick={handleRemove} />
+                        ) : (
+                            <p className='text-sm text-ash'>{data.trip.availableSeats > 0 ? data.trip.availableSeats : '0'} seats available</p>
                         )}
                     </div>
                 </div>
@@ -100,7 +155,14 @@ const TripContent = ({ initialData, user }: { initialData: { trip: ITrip }, user
                     <Map latitude={data.trip.location.coordinates[0]} longitude={data.trip.location.coordinates[1]}/>
                 </div>
                 {/* Dialog Button */}
-                    <PayButton />
+                    {/* <PayButton trip={data.trip} /> */}
+                    {data.trip.availableSeats > 0 ? (
+                    <PayButton trip={data.trip} />
+                    ) : (
+                    <Button disabled className="mt-4 w-full">
+                        Booking Unavailable
+                    </Button>
+                    )}
                 </div>
             </div>
         )

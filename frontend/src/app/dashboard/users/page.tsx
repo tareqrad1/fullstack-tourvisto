@@ -25,7 +25,6 @@ const UsersPage = async() => {
     cache: 'no-store'
   });
   const data = await res.json();
-  console.log(data);
   return (
     <div>
       <div className='py-5'>

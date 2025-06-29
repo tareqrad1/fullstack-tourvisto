@@ -34,7 +34,11 @@ const Header = ({ user, token }: { user: { name: string, avatar: string }, token
                     </p>
                 </div>
                 <div className="mt-6 flex justify-center md:justify-start items-center">
-                    <Button className="bg-blueAccent hover:bg-blueAccent-hover text-white text-lg font-semibold py-4 px-14">
+                    <Button className="bg-blueAccent hover:bg-blueAccent-hover text-white text-lg font-semibold py-4 px-14"
+                    onClick={() => {
+                        document.getElementById("features")?.scrollIntoView({ behavior: "smooth" });
+                    }}
+                    >
                         Get Started
                     </Button>
                 </div>
