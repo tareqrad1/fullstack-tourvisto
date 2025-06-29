@@ -10,6 +10,8 @@ import Link from 'next/link'
 
 const Home = async() => {
     const { token, user } = await getUserInSession()
+    console.log(user);
+    console.log(token);
     if(user?.role === 'admin') {
         return redirect('/dashboard')
     }
