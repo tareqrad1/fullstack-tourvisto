@@ -15,6 +15,7 @@ import bookingRoutes from './routes/booking.route.js';
 import paymentRoutes from './routes/payment.route.js';
 
 //middlewares
+app.set('trust proxy', 1);
 app.use(cookieParser());
 app.use(express.json({ limit: '100mb' }));
 app.use(express.urlencoded({ extended: true }));
