@@ -27,7 +27,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/trips', tripRoutes);
 app.use('/api/bookings', bookingRoutes);
-app.use('/payments', paymentRoutes);
+app.use('/api/payments', paymentRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on Port:${PORT}`);

@@ -40,6 +40,8 @@ export const checkoutSuccess = async (req, res) => {
     const { sessionId } = req.body;
     try {
         const session = await stripe.checkout.sessions.retrieve(sessionId);
+        console.log(session);
+        
         if (!session) {
             return res.status(404).json({ error: 'Session not found' });
         }
