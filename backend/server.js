@@ -15,14 +15,15 @@ import bookingRoutes from './routes/booking.route.js';
 import paymentRoutes from './routes/payment.route.js';
 
 //middlewares
-app.set('trust proxy', 1);
 app.use(cookieParser());
 app.use(express.json({ limit: '100mb' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-    origin: 'https://tourvisto-nu.vercel.app',
+    origin: ['https://tourvisto-nu.vercel.app', 'http://localhost:3000'],
     credentials: true,
     optionsSuccessStatus: 200,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'],
 }));
 
 app.use('/api/auth', authRoutes);

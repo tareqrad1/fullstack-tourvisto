@@ -5,6 +5,12 @@ import axios, { isAxiosError } from "axios";
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
 axios.defaults.withCredentials = true;
 
+axios.defaults.headers.common['Content-Type'] = 'application/json';
+axios.interceptors.request.use((config) => {
+    config.withCredentials = true;
+    return config
+});
+
 export type UserType = {
     id: string;
     name: string;

@@ -24,16 +24,20 @@ const Home = async() => {
                 <HeadTitle title='Handpicked Trips' description='Browse well-planned trips designed for different travel styles and interests' />
                 <AllTrips initialData={data} limit={4} />
             </main>
-            <footer className='flex justify-between items-center container py-5'>
-                <div className='flex items-center gap-2'>
-                    <Image src={'/fi_2200326.svg'} alt='logo' width={30} height={30} priority />
-                    <h1 className='text-2xl font-bold leading-5 text-midnight'>Tourvisto</h1>
+            <footer className="container py-5 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0">
+                <div className="flex items-center gap-2">
+                    <Image src="/fi_2200326.svg" alt="logo" width={30} height={30} priority />
+                    <h1 className="text-2xl font-bold leading-5 text-midnight">Tourvisto</h1>
                 </div>
-                <div className='flex items-center gap-3'>
-                    <Link href={'/terms'}>
-                        <p className='text-[16px] font-normal text-ash hover:underline cursor-pointer'>Terms & Condition</p>
+                <div className="flex flex-col md:flex-row items-center gap-2 md:gap-3 text-center">
+                    <Link href="/terms">
+                    <p className="text-[16px] font-normal text-ash hover:underline cursor-pointer">
+                        Terms & Condition
+                    </p>
                     </Link>
-                    <p className='text-[16px] font-normal text-ash hover:underline cursor-pointer'>Privacy Policy</p>
+                    <p className="text-[16px] font-normal text-ash hover:underline cursor-pointer">
+                    Privacy Policy
+                    </p>
                 </div>
             </footer>
         </div>
