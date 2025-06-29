@@ -10,7 +10,7 @@ interface DeleteUserShape {
 export const useDeleteUser = (): DeleteUserShape => {
     const deleteUser = async(id: string) => {
         try {
-            const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/users/delete/${id}`);
+            const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/users/delete/${id}`, { withCredentials: true });
             return response.data;
         } catch (error) {
             if(axios.isAxiosError(error)) {

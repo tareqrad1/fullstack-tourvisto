@@ -42,7 +42,7 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
                 password,
                 confirmPassword,
                 avatar
-            });
+            }, { withCredentials: true });
             setState(({ isLoading: false, error: null }));
             return response.data;
         } catch (error: Error | unknown) {
@@ -62,7 +62,7 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
             const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
                 email,
                 password
-            });
+            }, { withCredentials: true });
             setState((prev) => ({
                 ...prev,
                 user: response.data?.user,
@@ -85,7 +85,7 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
     const logout = async () => {
         setState((prev) => ({ ...prev, isLoading: true, error: null }));
         try {
-            await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`);
+            await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`, {}, { withCredentials: true });
             setState((prev) => ({
                 ...prev,
                 user: null,

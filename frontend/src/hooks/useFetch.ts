@@ -3,6 +3,7 @@
 import axios from 'axios';
 import useSWR from 'swr';
 
+axios.defaults.withCredentials = true;
 const fetcher = async (url: string) => axios.get(url).then(res => res.data);
 
 
