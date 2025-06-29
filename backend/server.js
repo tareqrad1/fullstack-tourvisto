@@ -21,6 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors({
     origin: 'https://tourvisto-nu.vercel.app',
     credentials: true,
+    optionsSuccessStatus: 200,
 }));
 
 app.use('/api/auth', authRoutes);

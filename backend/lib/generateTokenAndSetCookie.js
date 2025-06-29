@@ -10,6 +10,7 @@ export const generateTokenAndSetCookie = (userId, res) => {
         sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
         maxAge: 24 * 60 * 60 * 1000, // 1 day
         path: '/',
+        domain: process.env.NODE_ENV === 'production' ? '.tourvisto-nu.vercel.app' : undefined
     });
     return token;
 }
