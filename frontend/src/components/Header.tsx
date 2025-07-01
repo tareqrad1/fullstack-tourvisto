@@ -21,7 +21,7 @@ const Header = ({ user, token }: { user: { name: string, avatar: string }, token
             />
             <Navbar user={user} token={token} />
             {/* Hero Content */}
-            <motion.div className="container absolute top-1/2 left-0 transform -translate-y-1/2 z-20"
+            <motion.div className="container absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
