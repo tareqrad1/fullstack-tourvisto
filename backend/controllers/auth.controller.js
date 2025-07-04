@@ -50,7 +50,7 @@ export const login = async (req, res) => {
         if(!isPasswordValid) {
             return res.status(404).json({ error: 'Email or Password is incorrect' });
         };
-        generateTokenAndSetCookie(user._id, res);
+        await generateTokenAndSetCookie(user._id, res);
         user.lastActiveAt = new Date();
         await user.save();
         res.status(200).json({ message: 'Login successfully', user: {
