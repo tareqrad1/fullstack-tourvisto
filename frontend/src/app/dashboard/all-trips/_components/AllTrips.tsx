@@ -23,8 +23,8 @@ const AllTrips = ({ initialData, limit }: { initialData: TripsResponse, limit: n
         <div className='w-full'>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
             {isLoading
-            ? Array.from({ length: 8 }).map((_, i) => (
-                <div key={i} className="h-[180px] bg-gray-200 animate-pulse rounded-md"></div>
+            ? Array.from({ length: 4 }).map((_, i) => (
+                    <div key={i} className="h-[300px] bg-gray-200 animate-pulse rounded-md"></div>
                 ))
             : data?.trips.map((trip) => <TripCard key={trip._id} trip={trip} />)}
         </div>
